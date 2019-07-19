@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 ENTITIES_SRCS="
     Entities/MultiplayerGame.cpp
     Entities/MultiplayerServerLobby.cpp
@@ -282,9 +284,15 @@ LUABIND_SRCS="
 
 # CHANGE THIS TO FIT YOUR SYSTEM LOCATION
 PREPARED_DIR=""
+LIBS_DIR=""
 if [ -z "$PREPARED_DIR" ]; then
     echo "The PREPARED_DIR variable has not been set. Find it in build_linux.sh and set it to your system's path to the dependencies."
     echo "You can find the dependencies here: https://github.com/liberated-cortex/CCOSS_dependencies"
+    exit
+fi
+if [ -z "$LIBS_DIR" ]; then
+    echo "The LIBS_DIR variable has not been set. Find it in build_linux.sh and set it to your system's path to the libraries."
+    echo "You can find the libraries here: https://github.com/liberated-cortex/CCOSS_dependencies"
     exit
 fi
 ENTITIES_INC="-IEntities/"
@@ -312,7 +320,7 @@ INCLUDES="-I. -Iexternal/include -I$PREPARED_DIR/include $LUA_INC $ENTITIES_INC 
 INCLUDES+=" $OPENAL_INC $OGG_INC $VORBIS_INC $VORBISFILE_INC $MINIZIP_INC $OPENSSL_INC"
 WARN="-Wno-write-strings -Wno-endif-labels -Wno-deprecated-declarations"
 CPPFLAGS="-std=c++11 -fdiagnostics-color $INCLUDES $WARN -DALLEGRO_NO_FIX_ALIASES -fpermissive -g"
-LDFLAGS="-Llibs/ $ALLEGRO_LIBS $OPENSSL_LIBS $BOOST_LIBS $SDL_LIBS $SDL_MIXER_LIBS $LUABIND_LIBS $LUA_LIBS $ZIPIO_LIBS $CURL_LIBS $OPENAL_LIBS $OGG_LIBS $VORBIS_LIBS $VORBISFILE_LIBS"
+LDFLAGS="-L$LIBS_DIR $ALLEGRO_LIBS $OPENSSL_LIBS $BOOST_LIBS $SDL_LIBS $SDL_MIXER_LIBS $LUABIND_LIBS $LUA_LIBS $ZIPIO_LIBS $CURL_LIBS $OPENAL_LIBS $OGG_LIBS $VORBIS_LIBS $VORBISFILE_LIBS"
 LDFLAGS+=" $MINIZIP_LIBS $SHARED_LIBS"
 
 SRCS="$SYSTEM_SRCS $ENTITIES_SRCS $MANAGERS_SRCS $GUI_SRCS $MENUS_SRCS $RAKNET_SRCS $LUABIND_SRCS"
