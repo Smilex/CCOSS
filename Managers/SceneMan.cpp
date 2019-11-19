@@ -3135,7 +3135,7 @@ Vector SceneMan::ShortestDistance(Vector pos1, Vector pos2, bool checkBounds)
         }
         else
         {
-            if (abs(distance.m_X) > (sceneWidth / 2))
+            if (fabs(distance.m_X) > (sceneWidth / 2))
                 distance.m_X += sceneWidth;
         }
     }
@@ -3149,7 +3149,7 @@ Vector SceneMan::ShortestDistance(Vector pos1, Vector pos2, bool checkBounds)
         }
         else
         {
-            if (abs(distance.m_Y) > (sceneHeight / 2))
+            if (fabs(distance.m_Y) > (sceneHeight / 2))
                 distance.m_Y += sceneHeight;
         }
     }
@@ -3193,7 +3193,7 @@ float SceneMan::ShortestDistanceX(float val1, float val2, bool checkBounds, int 
         }
         else
         {
-            if (abs(distance) > (sceneWidth / 2))
+            if (fabs(distance) > (sceneWidth / 2))
                 distance += sceneWidth;
         }
 
@@ -3243,7 +3243,7 @@ float SceneMan::ShortestDistanceY(float val1, float val2, bool checkBounds, int 
         }
         else
         {
-            if (abs(distance) > (sceneHeight / 2))
+            if (fabs(distance) > (sceneHeight / 2))
                 distance += sceneHeight;
         }
 
