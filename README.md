@@ -52,7 +52,7 @@ git clone https://github.com/liberated-cortex/CCOSS.git
 cd CCOSS_dependencies
 ./prepare.sh
 cd ../CCOSS
-make all PREPARED_DIR=../CCOSS_dependencies/prepared/ -j4
+make PREPARED_DIR=../CCOSS_dependencies/prepared/ -j4
 ```
 
 The executable `cortex` must be run from the main directory of your game content, copying the executable to that directory also works.
